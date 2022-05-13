@@ -11,3 +11,10 @@ export const USER_SIGNUP = {
       user:null
   }
 }
+export const USER_DATA = {
+  type:types.USER_TYPE_USERDATA,
+  payload:{
+      userData:null
+  }
+}
+

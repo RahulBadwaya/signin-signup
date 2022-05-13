@@ -1,25 +1,26 @@
 import { Routes , Route  } from 'react-router-dom';
 import './App.css';
-import Login from './components/login';
-import Signup from './components/signup';
-import Dashboard from './components/dashboard';
-import { connect } from 'react-redux';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Dashboard from './components/Dashboard';
+import Profile from './components/Profile';
+import Home from './components/Home';
+import Menu from './components/Menu';
+import Restaurent from './components/Restaurent';
 import { useState } from 'react';
-// const mapStateToProps =(state)=>{
-//   console.log(state.userLogin)
-// return{
-//   userLogin:state.userLogin
-// }
-// }
 
 function App(props) {
-  const [user , setLoginUser] = useState({})
-  const [signupUser , setSignupUser] = useState({})
-    return (
+   return (
       <>
       <Routes>
-        <Route path='/' element={user && user._id ?<Dashboard/> : <Login setLoginUser={setLoginUser} />} /> 
-        <Route path="/signup" element={signupUser && signupUser._id ? <Login/> : <Signup setSignupUser={setSignupUser} />}/>
+        <Route path='/' element={<Login />} /> 
+        <Route path='/dashboard' element={<Dashboard /> } /> 
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/menu" element={<Menu/>}/>
+        <Route path="/restaurent" element={<Restaurent/>}/>
+        <Route path="/admin" element={<Restaurent/>}/>
       </Routes>
       </>
   

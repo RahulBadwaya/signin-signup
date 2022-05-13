@@ -34,7 +34,9 @@ const userSignupController = (req , res)=>{
              _id:mongoose.Types.ObjectId(),
              name:req.body.name,
              email:req.body.email,
-             pass:req.body.pass
+             pass:req.body.pass,
+             phone:req.body.phone,
+             address:req.body.address
          })
 
          data.save((err,result)=>{
@@ -51,7 +53,14 @@ const userSignupController = (req , res)=>{
  })
 }
 
+const userData =(req , res)=>{
+     User.findById(req.params._id).then(result=>{
+         res.json(result)
+     })
+}
+
 module.exports = {
     userLoginController,
-    userSignupController
+    userSignupController,
+    userData
 }
