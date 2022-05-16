@@ -156,6 +156,15 @@ padding: 6.5rem 0rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  padding-bottom: 4rem;
+  height: 100vh;
+
+}
+.admin-container {
+  background-image: url("../public/images/backimg2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100vh;
 }
 .dash-container .banner-container{
@@ -274,4 +283,90 @@ padding: 6.5rem 0rem;
 }
 .profile-container .container-fluid .editbtn:hover{
   color: #cb202d;
+}
+.admin-container .container-fluid{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+.admin-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-container .container-fluid h1{
+  font-size: 4rem;
+  color: white;
+  font-family: "Lobster", cursive;
+  font-family: "Tapestry", cursive;
+  margin-bottom:3rem ;
+}
+.admin-container .container-fluid form input{
+  background: transparent;
+  color: white;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.admin-container .container-fluid .row{
+   display: flex;
+   justify-content: space-around;
+}
+.admin-container .container-fluid form .inputBox{
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.788);
+  padding: 0.8rem 1rem;
+  margin: 2rem 0rem;
+}
+.admin-container .container-fluid form button{
+  width: 12rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.788);
+  color: white;
+  margin-top: 2.5rem;
+  font-family: "Lobster", cursive;
+  font-family: "Tapestry", cursive;
+  font-size: 1.2rem;
+}
+.restaurent-container .card{
+  background: transparent;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.788);
+  margin: 1.8rem 0rem;
+  
+}
+.restaurent-container .card img{
+  width:100%;
+  min-height:12rem;
+  height: 100%;
+}
+.restaurent-container .container-fluid{
+  width: 90%;
+  margin: auto;
+  padding-top: 3rem;
+}
+.restaurent-container .container-fluid .row{
+  display: flex;
+  justify-content:space-evenly;
+
+}
+.restaurent-container .container-fluid .row .card-title{
+  color: white;
+}
+.restaurent-container .container-fluid .row .card-text{
+  color: white;
+}
+.restaurent-container .container-fluid .row .rating{
+  margin: 1rem 0rem;
+}
+.restaurent-container .container-fluid .row .rating i{
+   color: rgb(177, 151, 7);
+   margin: 0rem 0.2rem;
+}
+::-webkit-file-upload-button{
+  background: transparent;
+  outline: none;
+  border:1px solid #cb202d;
+  color: white;
+  cursor: pointer;
 }

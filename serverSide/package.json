@@ -1,4 +1,5 @@
 {
+  "proxy": "http://your-company-api-domain",
   "name": "serverside",
   "version": "1.0.0",
   "description": "",

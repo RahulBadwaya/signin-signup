@@ -1,4 +1,5 @@
 const User = require('../models/model')
+const Restaurent = require('../models/restaurentModel')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const jwtKey = "r-ecommerce"
@@ -58,9 +59,34 @@ const userData =(req , res)=>{
          res.json(result)
      })
 }
+const restaurentController =(req , res)=>{
+    const restaurentData = new Restaurent({
+        _id:mongoose.Types.ObjectId(),
+        rName:req.body.rName,
+        rCity:req.body.rCity,
+        rAddress:req.body.rAddress,
+        rFile:req.body.rFile
+    })
+
+    restaurentData.save((err)=>{
+        if(err){
+            res.send(err)
+        }else{
+            res.send({message:"Restaurent Added"})
+        }
+    })
+}
+
+const restaurentGetController =(req , res)=>{
+    Restaurent.find().then(result=>{
+        res.json(result)
+    })
+}
 
 module.exports = {
     userLoginController,
     userSignupController,
-    userData
+    userData,
+    restaurentController,
+    restaurentGetController
 }
