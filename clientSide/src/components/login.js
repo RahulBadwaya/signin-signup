@@ -35,6 +35,8 @@ const Login = (props) => {
     if (props.userLogin) {
       axios.post(`http://localhost:4000/login`, props.userLogin).then((res) => {
         alert(res.data.message);
+        // props.setRole(res.user)
+        props.setRole(res.data.user.role)
         localStorage.setItem("id" ,res.data.user._id)
         localStorage.setItem("token", res.data.auth);
         if (res.data.auth) {

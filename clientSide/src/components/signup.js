@@ -18,13 +18,14 @@ const Signup = (props) => {
   let [confirmpass, setConfirmpass] = useState(null);
   let [phone, setPhone] = useState(null);
   let [address, setAddress] = useState(null);
+  let [role, setRole] = useState(false);
   const navigate = useNavigate();
-  
+
   const save = () => {
     Store.dispatch({
       ...USER_SIGNUP,
       payload: {
-        user: { name, email, pass, confirmpass , phone , address},
+        user: { name, email, pass, confirmpass, phone, address ,role },
       },
     });
   };
@@ -34,7 +35,7 @@ const Signup = (props) => {
         axios.post(`http://localhost:4000/signup`, props.user).then((res) => {
           console.log(res.data.auth);
           alert(res.data.message);
-          navigate('/')
+          navigate("/");
         });
       }
       if (pass !== confirmpass) {
@@ -45,7 +46,7 @@ const Signup = (props) => {
   };
 
   return (
-    <>
+    <>{console.log(props.user)}
       <div className="container-fluid login-signup">
         <div className="row">
           <div className="col-md-10 col-10 loginBOx">
@@ -82,7 +83,7 @@ const Signup = (props) => {
                   onChange={(e) => setPhone(e.target.value)}
                   required
                 />
-              <i class="bi bi-telephone"></i>
+                <i className="bi bi-telephone"></i>
               </div>
               <div className="inputBox">
                 <input
@@ -93,7 +94,7 @@ const Signup = (props) => {
                   onChange={(e) => setAddress(e.target.value)}
                   required
                 />
-               <i class="bi bi-geo-alt"></i>
+                <i className="bi bi-geo-alt"></i>
               </div>
               <div className="inputBox">
                 <input
@@ -116,6 +117,24 @@ const Signup = (props) => {
                   required
                 />
                 <i className="bi bi-lock"></i>
+              </div>
+              <div className="inputBox">
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckDefault"
+                  name="role"
+                  onBlur={save}
+                  onChange={(e) => setRole(e.target.checked)}
+                  />
+                <label
+                  className="form-check-label text-white ms-3"
+                  for="flexSwitchCheckDefault"
+                >
+                  Are You Admin
+                </label>
+              </div>
               </div>
               <div className="loginButtonBox">
                 <input type="submit" value="Signup" />

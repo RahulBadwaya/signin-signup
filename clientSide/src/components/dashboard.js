@@ -60,9 +60,9 @@ const Dashboard = (props) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/admin" className="nav-link" aria-current="page">
+                  {(props.role?<Link to="/admin" className="nav-link" aria-current="page">
                     Admin
-                  </Link>
+                  </Link>:null)}
                 </li>
 
                 <div className="btn-group userProfile">

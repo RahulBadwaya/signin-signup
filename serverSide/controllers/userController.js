@@ -37,7 +37,8 @@ const userSignupController = (req , res)=>{
              email:req.body.email,
              pass:req.body.pass,
              phone:req.body.phone,
-             address:req.body.address
+             address:req.body.address,
+             role:req.body.role
          })
 
          data.save((err,result)=>{

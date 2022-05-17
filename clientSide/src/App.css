@@ -26,7 +26,7 @@ padding: 6.5rem 0rem;
   font-family: "Tapestry", cursive;
 }
 
-.loginBOx form input {
+.loginBOx form input[type="text"] , input[type="email"] , input[type="password"],input[type="submit"]{
   background: transparent;
   outline: none;
   border: none;
@@ -34,6 +34,9 @@ padding: 6.5rem 0rem;
   color: grey;
   font-family: "Lobster", cursive;
   font-family: "Tapestry", cursive;
+}
+.loginBOx form .form-check-label{
+  color:grey;
 }
 .loginBOx form input:focus .inputBox {
   border: 1px solid rgba(255, 0, 0, 0.692);
