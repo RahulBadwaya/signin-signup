@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Store from "../ReduxData/Store";
 import { connect } from "react-redux";
 import { USER_SIGNUP } from "../ReduxData/actions/UserActions";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import {signupApi} from '../apiCalling/ApiCall'
 
 const mapStateToProps = (state) => {
   return {
@@ -12,41 +13,49 @@ const mapStateToProps = (state) => {
   };
 };
 const Signup = (props) => {
-  let [name, setName] = useState(null);
-  let [email, setEmail] = useState(null);
-  let [pass, setPass] = useState(null);
-  let [confirmpass, setConfirmpass] = useState(null);
-  let [phone, setPhone] = useState(null);
-  let [address, setAddress] = useState(null);
-  let [role, setRole] = useState(false);
+  const [user , setUser] = useState({
+    name:'',
+    email:"",
+    phone:"",
+    adress:"",
+    pass:"",
+    confirmpass:"",
+    role:false
+  })
   const navigate = useNavigate();
 
   const save = () => {
     Store.dispatch({
       ...USER_SIGNUP,
       payload: {
-        user: { name, email, pass, confirmpass, phone, address ,role },
+        user: user,
       },
     });
   };
   const signup = (event) => {
-    if (props.user != null) {
-      if (name && email && pass && pass === confirmpass) {
-        axios.post(`http://localhost:4000/signup`, props.user).then((res) => {
-          console.log(res.data.auth);
-          alert(res.data.message);
-          navigate("/");
-        });
-      }
-      if (pass !== confirmpass) {
-        alert("password does not matched!");
-      }
+    async function userSignupApi (){
+      if (props.user != null) {
+        if(user.pass === user.confirmpass){
+        const res = await signupApi(props.user)
+         alert(res.data.message);
+         navigate('/')
+        }else{
+              alert("Password Does Not Matched")
+        }
+     }
     }
+    userSignupApi()
     event.preventDefault();
   };
+  const changeHandler =(e)=>{
+     setUser({
+       ...user,
+       [e.target.name]:e.target.value
+     })
+  }
 
   return (
-    <>{console.log(props.user)}
+    <>{console.log(user)}
       <div className="container-fluid login-signup">
         <div className="row">
           <div className="col-md-10 col-10 loginBOx">
@@ -58,7 +67,7 @@ const Signup = (props) => {
                   placeholder="Enter Full Name"
                   name="name"
                   onBlur={save}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={changeHandler}
                   required
                 />
                 <i className="bi bi-person"></i>
@@ -69,7 +78,7 @@ const Signup = (props) => {
                   placeholder="Enter Your Email"
                   name="email"
                   onBlur={save}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={changeHandler}
                   required
                 />
                 <i className="bi bi-envelope"></i>
@@ -80,7 +89,7 @@ const Signup = (props) => {
                   placeholder="Enter Phone"
                   name="phone"
                   onBlur={save}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={changeHandler}
                   required
                 />
                 <i className="bi bi-telephone"></i>
@@ -91,7 +100,7 @@ const Signup = (props) => {
                   placeholder="Enter Address"
                   name="address"
                   onBlur={save}
-                  onChange={(e) => setAddress(e.target.value)}
+                  onChange={changeHandler}
                   required
                 />
                 <i className="bi bi-geo-alt"></i>
@@ -102,7 +111,7 @@ const Signup = (props) => {
                   placeholder="Create Password"
                   name="pass"
                   onBlur={save}
-                  onChange={(e) => setPass(e.target.value)}
+                  onChange={changeHandler}
                   required
                 />
                 <i className="bi bi-lock"></i>
@@ -113,7 +122,7 @@ const Signup = (props) => {
                   placeholder="Confirm Password"
                   name="confirmpass"
                   onBlur={save}
-                  onChange={(e) => setConfirmpass(e.target.value)}
+                  onChange={changeHandler}
                   required
                 />
                 <i className="bi bi-lock"></i>
@@ -126,7 +135,7 @@ const Signup = (props) => {
                   id="flexSwitchCheckDefault"
                   name="role"
                   onBlur={save}
-                  onChange={(e) => setRole(e.target.checked)}
+                  onChange={(e)=>setUser({...user , [e.target.name]:e.target.checked})}
                   />
                 <label
                   className="form-check-label text-white ms-3"

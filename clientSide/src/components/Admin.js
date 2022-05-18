@@ -1,25 +1,40 @@
 import { useState } from "react";
 import axios from "axios";
 import FileBase64 from "react-file-base64";
-// import {encode as base64_encode , decode as base64_decode} from "base-64"
-const Admin = () => {
-  const [rName, setRName] = useState(null);
-  const [rCity, setRCity] = useState(null);
-  const [rAddress, setRAddress] = useState(null);
-  const [rFile, setRFile] = useState(null);
-  const saveRestaurent = (event) => {
-    let restaurent = { rName, rCity, rAddress, rFile };
-    axios.post(`http://localhost:4000/restaurent`, restaurent).then((res) => {
-      console.log(res);
-      alert(res.data.message);
-    });
+import { adminApi } from "../apiCalling/ApiCall";
 
+const Admin = () => {
+  // const [rName, setRName] = useState(null);
+  // const [rCity, setRCity] = useState(null);
+  // const [rAddress, setRAddress] = useState(null);
+  // const [rFile, setRFile] = useState(null);
+  const [restaurent , setRestaurent] = useState({
+    rName:null,
+    rCity:null,
+    rAddress:null,
+    base64:null
+  })
+  const saveRestaurent = (event) => {
+    async function adminApiCall (){
+      if(restaurent){
+        const res = await adminApi(restaurent)
+          alert(res.data.message);
+      }
+      
+    }
+    adminApiCall()
     event.preventDefault();
   };
+  const handleChange =(e)=>{
+    setRestaurent({
+       ...restaurent,
+       [e.target.name]:e.target.value
+     })
+  }
 
   return (
     <>
-      {console.log(rFile)}
+    {console.log(restaurent)}
       <div className="admin-container">
         <div className="container-fluid">
           <h1>Add Restaurent</h1>
@@ -30,8 +45,8 @@ const Admin = () => {
                   <input
                     type="text"
                     placeholder="Enter Restaurent's Name "
-                    name="rname"
-                    onChange={(e) => setRName(e.target.value)}
+                    name="rName"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -40,8 +55,8 @@ const Admin = () => {
                   <input
                     type="text"
                     placeholder="Enter Restaurent's city "
-                    name="rcity"
-                    onChange={(e) => setRCity(e.target.value)}
+                    name="rCity"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -50,8 +65,8 @@ const Admin = () => {
                   <input
                     type="text"
                     placeholder="Enter Restaurent address "
-                    name="raddress"
-                    onChange={(e) => setRAddress(e.target.value)}
+                    name="rAddress"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -59,7 +74,7 @@ const Admin = () => {
                 <div className="inputBox">
                   <FileBase64
                     multiple={false}
-                    onDone={({ base64 }) => setRFile(base64)}
+                    onDone={({base64 }) => setRestaurent({...restaurent , base64})}
                   />
                 </div>
               </div>

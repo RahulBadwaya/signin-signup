@@ -1,4 +1,4 @@
-const User = require('../models/model')
+const User = require('../models/userModel')
 const Restaurent = require('../models/restaurentModel')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
@@ -66,7 +66,7 @@ const restaurentController =(req , res)=>{
         rName:req.body.rName,
         rCity:req.body.rCity,
         rAddress:req.body.rAddress,
-        rFile:req.body.rFile
+        base64:req.body.base64
     })
 
     restaurentData.save((err)=>{

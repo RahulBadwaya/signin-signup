@@ -135,7 +135,8 @@ padding: 6.5rem 0rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  padding-bottom: 4rem;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -145,14 +146,16 @@ padding: 6.5rem 0rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  padding-bottom: 4rem;
+  min-height: 100vh;
 }
 .menu-container {
   background-image: url("../public/images/backimg2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-bottom: 5rem;
+  padding-bottom: 4rem;
+  min-height: 100vh;
 }
 .restaurent-container {
   background-image: url("../public/images/backimg2.jpg");
@@ -160,7 +163,7 @@ padding: 6.5rem 0rem;
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 4rem;
-  height: 100vh;
+  min-height: 100vh;
 
 }
 .admin-container {
@@ -168,7 +171,8 @@ padding: 6.5rem 0rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  padding-bottom: 4rem;
+  min-height: 100vh;
 }
 .dash-container .banner-container{
     width: 90%;

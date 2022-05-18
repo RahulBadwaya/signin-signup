@@ -1,11 +1,15 @@
-import axios from "axios";
+
 import { useEffect, useState } from "react";
+import { restaurentApi } from "../apiCalling/ApiCall";
 const Restaurent = () => {
   const [restaurentData, setRestaurentData] = useState(null);
   useEffect(() => {
-    axios.get(`http://localhost:4000/restaurent`).then((result) => {
-      setRestaurentData(result.data);
-    });
+    async function restaurentApiCall (){
+      const res = await restaurentApi()
+        setRestaurentData(res.data);
+    }
+    restaurentApiCall()
+    
   }, []);
   if (restaurentData !== null) {
     return (
@@ -21,7 +25,7 @@ const Restaurent = () => {
                       <div class="row g-0">
                         <div class="col-md-4">
                           <img
-                            src={ob.rFile}
+                            src={ob.base64}
                             class="img-fluid rounded-start"
                           />
                         </div>

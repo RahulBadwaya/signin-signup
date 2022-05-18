@@ -5,7 +5,7 @@ const restaurentSchema = new mongoose.Schema({
     rName:String,
     rCity:String,
     rAddress:String,
-    rFile:String
+    base64:String
 })
 
 module.exports = new mongoose.model('restaurents' , restaurentSchema)

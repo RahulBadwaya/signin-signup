@@ -4,6 +4,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import Store from "../ReduxData/Store";
 import { USER_LOGIN } from "../ReduxData/actions/UserActions";
+import { loginApi } from '../apiCalling/ApiCall'
 
 const mapStateToProps = (state) => {
   return {
@@ -32,30 +33,33 @@ const Login = (props) => {
   };
 
   const login = (event) => {
-    if (props.userLogin) {
-      axios.post(`http://localhost:4000/login`, props.userLogin).then((res) => {
-        alert(res.data.message);
-        // props.setRole(res.user)
-        props.setRole(res.data.user.role)
-        localStorage.setItem("id" ,res.data.user._id)
-        localStorage.setItem("token", res.data.auth);
-        if (res.data.auth) {
-          navigate("/dashboard");
-        } else {
-          navigate("/");
-        }
-      });
-    } else {
-      alert("not authorized");
-    }
     event.preventDefault();
+  async function userLoginApi(){
+    if (props.userLogin) {
+      const res = await loginApi(props.userLogin)
+      console.log(res)
+     alert(res.data.message);
+     props.setRole(res.data.user.role)
+     localStorage.setItem("id" ,res.data.user._id)
+     localStorage.setItem("token", res.data.auth);
+       if (res) {
+         navigate("/dashboard");
+       } else {
+         navigate("/");
+       }
+     } else {
+       alert("not authorized");
+     }
+  }
+  userLoginApi()
+    
   };
   return (
     <>
-      <div className="container-fluidc login-signup" method="post">
+      <div className="container-fluidc login-signup" >
         <div className="row">
           <div className="col-md-10 col-sm-8 loginBOx">
-            <form onSubmit={login}>
+            <form onSubmit={login} method="post">
               <h1>Signin</h1>
               <div className="inputBox">
                 <input
